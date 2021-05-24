@@ -1,6 +1,6 @@
 {
-  "homepage": "http://uiz-11.github.io/zoom-studies-codebook-first",
-  "name": "codebook-zoom",
+  "homepage": "http://zoom-studies.github.io/zoom-studies-v2",
+  "name": "zoom-studies-v2",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
