@@ -1,25 +1,25 @@
 {
   "files": {
-    "main.css": "/zoom-studies-codebook-first/static/css/main.fd10bff6.chunk.css",
-    "main.js": "/zoom-studies-codebook-first/static/js/main.f65d191f.chunk.js",
-    "main.js.map": "/zoom-studies-codebook-first/static/js/main.f65d191f.chunk.js.map",
-    "runtime-main.js": "/zoom-studies-codebook-first/static/js/runtime-main.babe00d3.js",
-    "runtime-main.js.map": "/zoom-studies-codebook-first/static/js/runtime-main.babe00d3.js.map",
-    "static/css/2.3cf5d70f.chunk.css": "/zoom-studies-codebook-first/static/css/2.3cf5d70f.chunk.css",
-    "static/js/2.1ddaa882.chunk.js": "/zoom-studies-codebook-first/static/js/2.1ddaa882.chunk.js",
-    "static/js/2.1ddaa882.chunk.js.map": "/zoom-studies-codebook-first/static/js/2.1ddaa882.chunk.js.map",
-    "index.html": "/zoom-studies-codebook-first/index.html",
-    "precache-manifest.d8777a35d470d502b6640b42647649f5.js": "/zoom-studies-codebook-first/precache-manifest.d8777a35d470d502b6640b42647649f5.js",
-    "service-worker.js": "/zoom-studies-codebook-first/service-worker.js",
-    "static/css/2.3cf5d70f.chunk.css.map": "/zoom-studies-codebook-first/static/css/2.3cf5d70f.chunk.css.map",
-    "static/css/main.fd10bff6.chunk.css.map": "/zoom-studies-codebook-first/static/css/main.fd10bff6.chunk.css.map",
-    "static/js/2.1ddaa882.chunk.js.LICENSE.txt": "/zoom-studies-codebook-first/static/js/2.1ddaa882.chunk.js.LICENSE.txt"
+    "main.css": "/zoom-studies-v2/static/css/main.fd10bff6.chunk.css",
+    "main.js": "/zoom-studies-v2/static/js/main.cf3715f9.chunk.js",
+    "main.js.map": "/zoom-studies-v2/static/js/main.cf3715f9.chunk.js.map",
+    "runtime-main.js": "/zoom-studies-v2/static/js/runtime-main.b150bb5a.js",
+    "runtime-main.js.map": "/zoom-studies-v2/static/js/runtime-main.b150bb5a.js.map",
+    "static/css/2.3cf5d70f.chunk.css": "/zoom-studies-v2/static/css/2.3cf5d70f.chunk.css",
+    "static/js/2.3d77926f.chunk.js": "/zoom-studies-v2/static/js/2.3d77926f.chunk.js",
+    "static/js/2.3d77926f.chunk.js.map": "/zoom-studies-v2/static/js/2.3d77926f.chunk.js.map",
+    "index.html": "/zoom-studies-v2/index.html",
+    "precache-manifest.b4d346370fb68b21e0c0b198f71f12cf.js": "/zoom-studies-v2/precache-manifest.b4d346370fb68b21e0c0b198f71f12cf.js",
+    "service-worker.js": "/zoom-studies-v2/service-worker.js",
+    "static/css/2.3cf5d70f.chunk.css.map": "/zoom-studies-v2/static/css/2.3cf5d70f.chunk.css.map",
+    "static/css/main.fd10bff6.chunk.css.map": "/zoom-studies-v2/static/css/main.fd10bff6.chunk.css.map",
+    "static/js/2.3d77926f.chunk.js.LICENSE.txt": "/zoom-studies-v2/static/js/2.3d77926f.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.babe00d3.js",
+    "static/js/runtime-main.b150bb5a.js",
     "static/css/2.3cf5d70f.chunk.css",
-    "static/js/2.1ddaa882.chunk.js",
+    "static/js/2.3d77926f.chunk.js",
     "static/css/main.fd10bff6.chunk.css",
-    "static/js/main.f65d191f.chunk.js"
+    "static/js/main.cf3715f9.chunk.js"
   ]
 }
