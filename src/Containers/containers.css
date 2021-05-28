@@ -15,7 +15,7 @@ div .tlx-scale * {
   margin: 0 1rem;
 }
 
-div .elab-row {
+div .elab-row, div .sus-row {
   width:100%;
   margin:0;
   padding: 0.5rem 1rem;
@@ -23,7 +23,7 @@ div .elab-row {
   font-size: .9rem;
 }
 
-div .elab-row * {
+div .elab-row *, div .sus-row * {
   margin: 1rem;
 }
 

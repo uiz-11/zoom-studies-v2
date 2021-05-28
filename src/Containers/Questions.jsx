@@ -79,7 +79,7 @@ class Questions extends Component {
   onRating = value => {
     console.log(value);
     const { qCount, ratingsValues } = this.state;
-    const { onRatingComplete, questions, numQuestionsCompleted } = this.props;
+    const { onRatingComplete, questions } = this.props;
 
     // Trap question
     // const { docArray } = this.state;
@@ -90,7 +90,7 @@ class Questions extends Component {
     //   }
     // }
 
-    ratingsValues['doc'+(qCount+numQuestionsCompleted+1)] = value;
+    ratingsValues[questions[qCount].id] = value;
 
     this.setState({
       ratingsValues: ratingsValues,

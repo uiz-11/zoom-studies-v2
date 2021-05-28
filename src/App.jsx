@@ -31,10 +31,12 @@ class App extends Component {
       questionsComplete: false,
       tlxComplete: false,
       elabComplete: false,
+      susComplete: false,
       experimentComplete: false,
       ratingsValues: {},
       tlxResults: {},
-      elabResults:{}
+      elabResults:{},
+      susResults: {}
     };
 
     this.finishExperiment = this.finishExperiment.bind(this);
@@ -57,9 +59,9 @@ class App extends Component {
   componentDidUpdate() {
     window.scrollTo(0, 0)
 
-    const { questionsComplete, tlxComplete, elabComplete, experimentComplete } = this.state;
-    if (questionsComplete && tlxComplete && elabComplete && !experimentComplete) {
-      console.log('submit')
+    const { questionsComplete, tlxComplete, elabComplete, susComplete, experimentComplete } = this.state;
+    const roundComplete = questionsComplete && tlxComplete && elabComplete && susComplete;
+    if (roundComplete && !experimentComplete) {
       this.submit();
     }
   }
@@ -106,13 +108,20 @@ class App extends Component {
     });
   }
 
+  onSusSubmit = (susValues) => {
+    this.setState({
+      susResults: susValues,
+      susComplete: true,
+    })
+  }
+
   finishExperiment() {
     console.log("finishexperiment");
     const { workerID, uID, consentSigned } = this.state;
 
     //generate completion code
     const code = Math.floor((Math.random() * 99999) + 10000);
-    const sheet0row = {Worker_ID: workerID,	u_ID: uID, consent_signed: consentSigned,	generated_code: code};
+    const sheet0row = {Worker_ID: workerID,	u_ID: uID, starts_with: 'codebook', consent_signed: consentSigned,	generated_code: code};
 
     const requestOptions = {
       method: 'POST',
@@ -132,25 +141,27 @@ class App extends Component {
   }
 
   submit() {
-    const {uID, tool, questions, numQuestionsCompleted, ratingsValues, tlxResults, elabResults} = this.state;
+    const {uID, tool, questions, numQuestionsCompleted, ratingsValues, tlxResults, elabResults, susResults} = this.state;
 
     //append data
     const resultsRow = {u_ID: uID, condition: tool,	...ratingsValues};
     console.log(resultsRow);
     const tlxRow = {u_ID: uID, condition: tool,	...tlxResults};
     const elabRow = {u_ID: uID, condition: tool, ...elabResults};
+    const susRow = {u_ID: uID, condition: tool, ...susResults}
 
     const requestOptions = {
       method: 'POST',
       headers: { 'Content-Type': 'text/plain' },
       body: JSON.stringify({ ratings_with_multiple_conditions: resultsRow,
                              tlx_answers_with_multiple_conditions: tlxRow,
-                             elab_answers_with_multiple_conditions: elabRow })
+                             elab_answers_with_multiple_conditions: elabRow,
+                             sus_answers_with_multiple_conditions: susRow })
     };
     fetch('https://script.google.com/macros/s/AKfycbysvtxKlgBzNE1m-1zxeKrzp0t2vozOo8jWN9c34MxWLKTfSQ9q13NFM0smrAc3VqmX/exec', requestOptions)
         .then(response => {
           console.log(response);
-          if (numQuestionsCompleted == DocsFile.docs.length) {
+          if (numQuestionsCompleted === DocsFile.docs.length) {
             this.finishExperiment();
           } else {
             const newToolIndex = Object.keys(questions).indexOf(tool) + 1;
@@ -158,9 +169,11 @@ class App extends Component {
               questionsComplete: false,
               tlxComplete: false,
               elabComplete: false,
+              susComplete: false,
               ratingsValues: {},
               tlxResults: {},
               elabResults: {},
+              susResults: {},
               tool: Object.keys(questions)[newToolIndex]
             });
           }
@@ -173,8 +186,9 @@ class App extends Component {
             questions,
             tool,
             questionsComplete,
-            elabComplete,
             tlxComplete,
+            elabComplete,
+            susComplete,
             experimentComplete,
             numQuestionsCompleted } = this.state;
 
@@ -199,7 +213,7 @@ class App extends Component {
         </Modal>
         <Container className="App-body">
           <Row>
-            { tool == 'codebook' &&
+            { tool === 'codebook' &&
               <Col className="cb-col">
                 <Codebook />
               </Col>
@@ -221,12 +235,14 @@ class App extends Component {
           <Surveys
             onTLXSubmit={this.onTLXSubmit}
             onElabSubmit={this.onElabSubmit}
+            onSusSubmit={this.onSusSubmit}
             tlxComplete={tlxComplete}
             elabComplete={elabComplete}
+            susComplete={susComplete}
           />
         </Modal>
         <Modal
-          isOpen={questionsComplete && tlxComplete && elabComplete && numQuestionsCompleted == DocsFile.docs.length}
+          isOpen={questionsComplete && tlxComplete && elabComplete && susComplete && numQuestionsCompleted === DocsFile.docs.length}
           contentLabel="CompletionCode"
           shouldCloseOnOverlayClick={false}
         >

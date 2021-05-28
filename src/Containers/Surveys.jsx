@@ -41,6 +41,25 @@ class Surveys extends Component {
     this.props.onElabSubmit(elabValues);
   }
 
+  susSubmit = (e) => {
+    e.preventDefault();
+
+    const susValues = {
+      'sus1': e.target.e_q1.value,
+      'sus2': e.target.e_q2.value,
+      'sus3': e.target.e_q3.value,
+      'sus4': e.target.e_q4.value,
+      'sus5': e.target.e_q5.value,
+      'sus6': e.target.e_q6.value,
+      'sus7': e.target.e_q7.value,
+      'sus8': e.target.e_q8.value,
+      'sus9': e.target.e_q9.value,
+      'sus10': e.target.e_q9.value
+    }
+
+    this.props.onSusSubmit(susValues);
+  }
+
   tlxScales() {
     return(
       <Container className="tlx-div"><Form onSubmit={this.tlxSubmit}>
@@ -196,8 +215,81 @@ class Surveys extends Component {
     )
   }
 
+  susSurvey() {
+    return(
+      <Container>
+      <h4>Instructions:</h4>
+      <p>Evaluate your experience during the relevancy rating task you just completed by clicking at the point that matches your experience for each scale. Consider each scale indivdually. Please read the descriptions below carefully before rating.</p>
+      <hr />
+      <Form className="sus-div" onSubmit={this.susSubmit}>
+        <Label>I think that I would like to use this system frequently.</Label>
+        <div className="sus-row" id="e_q1">
+          Strongly disagree	
+          <Input type="range" id="e_q1" defaultValue="3" min="1" max="5" />
+          Strongly agree
+        </div>
+        <Label>I found the system unnecessarily complex.</Label>
+        <div className="sus-row" id="e_q2">
+          Strongly disagree	
+          <Input type="range" id="e_q2" defaultValue="3" min="1" max="5" />
+          Strongly agree
+        </div>
+        <Label>I thought the system was easy to use.</Label>
+        <div className="sus-row" id="e_q3">
+          Strongly disagree	
+          <Input type="range" id="e_q3" defaultValue="3" min="1" max="5" />
+          Strongly agree
+        </div>
+        <Label>I think that I would need the support of a technical person to be able to use this system.</Label>
+        <div className="sus-row" id="e_q4">
+          Strongly disagree	
+          <Input type="range" id="e_q4" defaultValue="3" min="1" max="5" />
+          Strongly agree
+        </div>
+        <Label>I found the various functions in this system were well integrated.</Label>
+        <div className="sus-row" id="e_q5">
+          Strongly disagree	
+          <Input type="range" id="e_q5" defaultValue="3" min="1" max="5" />
+          Strongly agree
+        </div>
+        <Label>I thought there was too much inconsistency in this system.</Label>
+        <div className="sus-row" id="e_q6">
+          Strongly disagree	
+          <Input type="range" id="e_q6" defaultValue="3" min="1" max="5" />
+          Strongly agree
+        </div>
+        <Label>I would imagine that most people would learn to use this system very quickly.</Label>
+        <div className="sus-row" id="e_q7">
+          Strongly disagree	
+          <Input type="range" id="e_q7" defaultValue="3" min="1" max="5" />
+          Strongly agree
+        </div>
+        <Label>I found the system very cumbersome to use.</Label>
+        <div className="sus-row" id="e_q8">
+          Strongly disagree	
+          <Input type="range" id="e_q8" defaultValue="3" min="1" max="5" />
+          Strongly agree
+        </div>
+        <Label>I felt very confident using the system.</Label>
+        <div className="sus-row" id="e_q9">
+          Strongly disagree	
+          <Input type="range" id="e_q9" defaultValue="3" min="1" max="5" />
+          Strongly agree
+        </div>
+        <Label>I needed to learn a lot of things before I could get going with this system.</Label>
+        <div className="sus-row" id="e_q10">
+          Strongly disagree	
+          <Input type="range" id="e_q10" defaultValue="3" min="1" max="5" />
+          Strongly agree
+        </div>
+        <Button type="submit">Submit</Button>
+      </Form>
+      </Container>
+    )
+  }
+
   runSurveys() {
-    const { tlxComplete, elabComplete } = this.props;
+    const { tlxComplete, elabComplete, susComplete } = this.props;
 
     if (!tlxComplete) {
       return this.tlxScales();
@@ -205,7 +297,10 @@ class Surveys extends Component {
     if (!elabComplete) {
       return this.elabSurvey();
     }
-    if (tlxComplete && elabComplete) {
+    if (!susComplete) {
+      return this.susSurvey();
+    }
+    if (tlxComplete && elabComplete && susComplete) {
       return 'Loading next set of questions. Please wait.';
     }
 
